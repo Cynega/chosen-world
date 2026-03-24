@@ -96,8 +96,7 @@ function CustomLegend({ religionLabels }) {
   );
 }
 
-function CustomYAxisTick({ x, y, payload }) {
-  const maxLen = 18;
+function CustomYAxisTick({ x, y, payload, maxLen = 18 }) {
   const text = payload.value.length > maxLen
     ? payload.value.slice(0, maxLen) + '…'
     : payload.value;
@@ -119,6 +118,7 @@ function CustomYAxisTick({ x, y, payload }) {
 export default function ReligionChart() {
   const [hoveredBar, setHoveredBar] = useState(null);
   const { t, countryName } = useLanguage();
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
 
   const religionLabels = t('religion.labels');
 
@@ -138,7 +138,7 @@ export default function ReligionChart() {
   return (
     <section
       id="religion"
-      className="py-20 px-4"
+      className="py-20 px-0 sm:px-4"
       style={{ background: 'linear-gradient(180deg, #0D1117 0%, #141B2D 60%, #0D1117 100%)' }}
     >
       <div className="max-w-6xl mx-auto">
@@ -167,7 +167,7 @@ export default function ReligionChart() {
 
         {/* Chart */}
         <div
-          className="rounded-2xl border p-4 sm:p-8"
+          className="rounded-none sm:rounded-2xl border-y sm:border p-2 sm:p-8"
           style={{
             background: 'rgba(14, 21, 35, 0.8)',
             borderColor: 'rgba(212, 160, 23, 0.12)',
@@ -178,7 +178,7 @@ export default function ReligionChart() {
             <BarChart
               layout="vertical"
               data={chartData}
-              margin={{ top: 0, right: 16, left: 160, bottom: 0 }}
+              margin={{ top: 0, right: 8, left: isMobile ? 0 : 160, bottom: 0 }}
               barSize={18}
             >
               <XAxis
@@ -192,8 +192,8 @@ export default function ReligionChart() {
               <YAxis
                 type="category"
                 dataKey="country"
-                width={155}
-                tick={<CustomYAxisTick />}
+                width={isMobile ? 85 : 155}
+                tick={<CustomYAxisTick maxLen={isMobile ? 12 : 18} />}
                 axisLine={false}
                 tickLine={false}
               />
