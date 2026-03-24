@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Block access to build scripts and source maps (shouldn't be served anyway)
+Disallow: /scripts/
+Disallow: /*.map
+
+Sitemap: https://chosen-world.netlify.app/sitemap.xml
