@@ -9,7 +9,7 @@ export const translations = {
       verSerie: 'Watch series →',
     },
     hero: {
-      subtitle: 'Who watches a series about Jesus… and from what faith?',
+      subtitle: 'Who watches a series about Jesus — and from which faith tradition?',
       description:
         'According to Angel Studios, The Chosen has reached more than 175 countries with a story many may not have expected to follow. Let\'s explore two questions: Where is it watched? And in those places, what religious tradition predominates?',
       stats: [
